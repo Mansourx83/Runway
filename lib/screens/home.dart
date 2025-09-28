@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late VideoPlayerController _controller;
   @override
-
   ////method to play video from assets
   void initState() {
     _controller = VideoPlayerController.asset("assets/video/video.mp4")
@@ -72,8 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       physics: BouncingScrollPhysics(),
                       child: Row(
-                        children: List.generate(category.length, (index) {
-                          final item = category[index];
+                        children: List.generate(CategoryModel.category.length, (
+                          index,
+                        ) {
+                          final item = CategoryModel.category[index];
                           return Padding(
                             padding: const EdgeInsets.only(left: 12),
                             child: GestureDetector(

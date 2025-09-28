@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:runway/widgets/category_filter.dart';
 import 'package:runway/widgets/custom_app_bar.dart';
 
@@ -18,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
         children: [
           ////first section
           CategoryFilter(),
-
+          Gap(15),
           ////Products section
         ],
       ),
