@@ -15,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late VideoPlayerController _controller;
   @override
+
+  ////method to play video from assets
   void initState() {
     _controller = VideoPlayerController.asset("assets/video/video.mp4")
       ..initialize().then((_) {
@@ -26,13 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  List<CategoryModel> category = [
-    CategoryModel(image: "assets/images/category/Women.png", name: "Women"),
-    CategoryModel(image: "assets/images/category/Men.png", name: "Men"),
-    CategoryModel(image: "assets/images/category/Kids.png", name: "Kids"),
-    CategoryModel(image: "assets/images/category/Deals.png", name: "Deals"),
-    CategoryModel(image: "assets/images/category/Health.png", name: "Health"),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
