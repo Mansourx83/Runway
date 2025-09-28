@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:runway/models/category_model.dart';
 import 'package:runway/screens/categories.dart';
 import 'package:runway/widgets/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
@@ -25,6 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  List<CategoryModel> category = [
+    CategoryModel(image: "assets/images/category/Women.png", name: "Women"),
+    CategoryModel(image: "assets/images/category/Men.png", name: "Men"),
+    CategoryModel(image: "assets/images/category/Kids.png", name: "Kids"),
+    CategoryModel(image: "assets/images/category/Deals.png", name: "Deals"),
+    CategoryModel(image: "assets/images/category/Health.png", name: "Health"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,26 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: Stack(
         children: [
-
-      /////////Video
+          /////////Video
           AspectRatio(
             aspectRatio: _controller.value.aspectRatio,
             child: VideoPlayer(_controller),
           ),
-       
-       
-       
-       /////////Categories
-        Positioned(
+
+          /////////Categories
+          Positioned(
             bottom: 0,
             right: 0,
             left: 0,
             child: Container(
               width: double.infinity,
-              height: 220,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
+              height: 240,
+              decoration: BoxDecoration(color: Colors.white),
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Column(
@@ -63,42 +66,44 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Gap(20),
                     Text(
-                        "Categories",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      "Categories",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     Gap(30),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       physics: BouncingScrollPhysics(),
                       child: Row(
-                        children: List.generate(
-                            category.length,
-                          (index) {
-                              final item = category[index];
-                             return Padding(
-                               padding: const EdgeInsets.only(left: 12),
-                               child: GestureDetector(
-                                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (c) => CategoriesScreen())),
-                                 child: Column(
-                                   children: [
-                                     Image.asset(item.image,width: 75),
-                                     Gap(10),
-                                     Text(
-                                       item.name,
-                                       style: TextStyle(
-                                         fontSize: 16,
-                                         fontWeight: FontWeight.w600,
-                                       ),
-                                     ),
-                                   ],
-                                 ),
-                               ),
-                             );
-                          },
-                        ),
+                        children: List.generate(category.length, (index) {
+                          final item = category[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 12),
+                            child: GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (c) => CategoriesScreen(),
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Image.asset(item.image, width: 75),
+                                  Gap(10),
+                                  Text(
+                                    item.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                       ),
                     ),
                     Gap(30),
@@ -107,9 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-     
-       
-       
         ],
       ),
     );
