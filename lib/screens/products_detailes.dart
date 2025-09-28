@@ -4,22 +4,15 @@ import 'package:gap/gap.dart';
 import 'package:runway/widgets/custom_app_bar.dart';
 import '../widgets/category_filter.dart';
 
-
 class ProductDetails extends StatefulWidget {
-  const ProductDetails({
-    super.key,
-    this.image,
-    this.name,
-    this.price,
-  });
-  final String? image , name , price;
+  const ProductDetails({super.key, this.image, this.name, this.price});
+  final String? image, name, price;
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-
   ScrollController scrollController = ScrollController();
 
   @override
@@ -32,27 +25,25 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   void _showBottomSheet() {
     showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) {
-          return DraggableScrollableSheet(
-            initialChildSize: 0.17,
-            minChildSize: 0.17,
-            maxChildSize: 0.8,
-            expand: false,
-            builder: (BuildContext context, ScrollController scrollController) {
-              return bottomWidget(
-                  scrollController,
-                  widget.name,
-                  widget.price,
-              );
-            },
+      context: context,
+      isScrollControlled: true,
+      barrierColor: Colors.transparent,
+      isDismissible: false, 
+      enableDrag: false, 
+      builder: (context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.17,
+          minChildSize: 0.17,
+          maxChildSize: 0.8,
+          expand: false,
 
-          );
-        },
+          builder: (BuildContext context, ScrollController scrollController) {
+            return bottomWidget(scrollController, widget.name, widget.price);
+          },
+        );
+      },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +62,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             Stack(
               children: [
                 SizedBox(
-                    width: 250,
-                    height: 600,
-                    child: Image.asset(widget.image.toString()),
+                  width: 250,
+                  height: 600,
+                  child: Image.asset(widget.image.toString()),
                 ),
                 Positioned(
                   bottom: 20,
@@ -91,7 +82,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 }
 
 /// bottomSheetWidget
-Widget bottomWidget(scroll,name,price) {
+Widget bottomWidget(scroll, name, price) {
   return Container(
     width: double.infinity,
     decoration: BoxDecoration(
@@ -116,18 +107,28 @@ Widget bottomWidget(scroll,name,price) {
           ),
         ),
         Gap(10),
-        Text(name.toString(),maxLines: 1,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)),
+        Text(
+          name.toString(),
+          maxLines: 1,
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+        ),
         Gap(20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Text("€${price}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
+            Text(
+              "€${price}",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            ),
             Row(
               children: [
                 Icon(Icons.favorite_border),
                 Gap(10),
-                Text("450",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+                Text(
+                  "450",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
               ],
             ),
           ],
@@ -137,10 +138,7 @@ Widget bottomWidget(scroll,name,price) {
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
-            border: Border.all(
-              width: 0.7,
-              color: Colors.black12,
-            ),
+            border: Border.all(width: 0.7, color: Colors.black12),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,30 +147,20 @@ Widget bottomWidget(scroll,name,price) {
                 children: [
                   Text(
                     "Select color",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   Gap(10),
                   SvgPicture.asset("assets/svgs/select.svg"),
                 ],
               ),
 
-              Container(
-                width: 2,
-                height: 40,
-                color: Colors.black12,
-              ),
+              Container(width: 2, height: 40, color: Colors.black12),
 
               Row(
                 children: [
                   Text(
                     "Select size",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   Gap(10),
                   SvgPicture.asset("assets/svgs/select.svg"),
@@ -186,12 +174,17 @@ Widget bottomWidget(scroll,name,price) {
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
-            color: Colors.black
+            color: Colors.black,
           ),
           child: Center(
-              child: Text("Add To Bag",
-                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
+            child: Text(
+              "Add To Bag",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
+            ),
           ),
         ),
       ],
