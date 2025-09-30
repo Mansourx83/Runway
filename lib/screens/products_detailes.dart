@@ -28,8 +28,8 @@ class _ProductDetailsState extends State<ProductDetails> {
       context: context,
       isScrollControlled: true,
       barrierColor: Colors.transparent,
-      isDismissible: false, 
-      enableDrag: false, 
+      isDismissible: false,
+      enableDrag: false,
       builder: (context) {
         return DraggableScrollableSheet(
           initialChildSize: 0.17,
